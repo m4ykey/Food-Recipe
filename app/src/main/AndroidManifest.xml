@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.meal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".activity.FoodApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +17,10 @@
         android:theme="@style/Theme.Meal"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
