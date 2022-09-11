@@ -40,9 +40,18 @@ class SearchFavAdapter : RecyclerView.Adapter<SearchFavAdapter.MyViewHolder>() {
             .into(holder.binding.imgFoodSearch)
         holder.binding.txtFood.text = differ.currentList[position].strMeal
         holder.binding.txtDescription.text = differ.currentList[position].strInstructions
+        holder.binding.constraint.setOnClickListener {
+            onItemClick?.let { it(differ.currentList[position]) }
+        }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
+    }
+
+    private var onItemClick : ((Food) -> Unit)? = null
+
+    fun setOnItemClick(listener : (Food) -> Unit){
+        onItemClick = listener
     }
 }

@@ -25,6 +25,9 @@
         <argument
             android:name="food"
             app:argType="com.example.meal.data.model.Food" />
+        <action
+            android:id="@+id/action_detailFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"

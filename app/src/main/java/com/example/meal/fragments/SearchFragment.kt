@@ -22,9 +22,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
-    private lateinit var binding : FragmentSearchBinding
-    private val viewModel : FoodViewModel by viewModels()
-    private lateinit var searchAdapter : SearchFavAdapter
+    private lateinit var binding: FragmentSearchBinding
+    private val viewModel: FoodViewModel by viewModels()
+    private lateinit var searchAdapter: SearchFavAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,21 +47,28 @@ class SearchFragment : Fragment() {
         }
         searchRecyclerView()
 
-        var job : Job? = null
+        var job: Job? = null
         binding.etSearchFood.addTextChangedListener { searchQuery ->
             job?.cancel()
-            job = lifecycleScope.launch{
+            job = lifecycleScope.launch {
                 delay(200)
                 viewModel.searchFood(searchQuery.toString())
             }
         }
 
+        searchAdapter.setOnItemClick {
+            val bundle = Bundle().apply {
+                putParcelable("food", it)
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_detailFragment, bundle)
+        }
     }
 
     private fun searchRecyclerView() {
         searchAdapter = SearchFavAdapter()
         binding.rvSearch.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = searchAdapter
         }
     }
