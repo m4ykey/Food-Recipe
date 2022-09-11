@@ -30,6 +30,22 @@ class FoodViewModel @Inject constructor(
         getCategories()
     }
 
+    fun insert(food: Food){
+        viewModelScope.launch {
+            repository.upsert(food)
+        }
+    }
+
+    fun delete(food: Food){
+        viewModelScope.launch {
+            repository.deleteFood(food)
+        }
+    }
+
+    fun getAllFood() : LiveData<List<Food>>{
+        return repository.getAllFood()
+    }
+
     fun searchFood(searchFood : String) = viewModelScope.launch {
         repository.searchFood(searchFood).let { response ->
             if (response.isSuccessful){

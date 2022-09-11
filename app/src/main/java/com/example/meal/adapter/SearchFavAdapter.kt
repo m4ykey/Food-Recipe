@@ -11,9 +11,10 @@ import com.example.meal.databinding.SearchItemListBinding
 
 class SearchFavAdapter : RecyclerView.Adapter<SearchFavAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(val binding : SearchItemListBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class MyViewHolder(val binding: SearchItemListBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallBack = object : DiffUtil.ItemCallback<Food>(){
+    private val diffCallBack = object : DiffUtil.ItemCallback<Food>() {
         override fun areItemsTheSame(oldItem: Food, newItem: Food): Boolean {
             return oldItem.idMeal == newItem.idMeal
         }
@@ -49,9 +50,9 @@ class SearchFavAdapter : RecyclerView.Adapter<SearchFavAdapter.MyViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClick : ((Food) -> Unit)? = null
+    private var onItemClick: ((Food) -> Unit)? = null
 
-    fun setOnItemClick(listener : (Food) -> Unit){
+    fun setOnItemClick(listener: (Food) -> Unit) {
         onItemClick = listener
     }
 }

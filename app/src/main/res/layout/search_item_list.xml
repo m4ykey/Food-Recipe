@@ -58,13 +58,4 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_favorite_24"
-        tools:tint="@color/white"
-        app:layout_constraintTop_toTopOf="@id/card"
-        app:layout_constraintStart_toStartOf="@+id/card"
-        android:layout_margin="5dp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
