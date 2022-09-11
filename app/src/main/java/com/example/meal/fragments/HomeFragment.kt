@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.meal.activity.SearchActivity
+import com.example.meal.R
 import com.example.meal.adapter.CategoryHomeAdapter
 import com.example.meal.data.model.Food
 import com.example.meal.databinding.FragmentHomeBinding
@@ -52,7 +54,7 @@ class HomeFragment : Fragment() {
         binding.etSearch.apply {
             isFocusable = false
             setOnClickListener {
-                startActivity(Intent(requireActivity(), SearchActivity::class.java))
+                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
         }
     }

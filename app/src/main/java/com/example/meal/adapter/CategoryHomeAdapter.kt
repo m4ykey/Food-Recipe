@@ -16,19 +16,8 @@ class CategoryHomeAdapter : RecyclerView.Adapter<CategoryHomeAdapter.MyViewHolde
     private var categoryList = ArrayList<FoodCategory>()
     fun setCategories(categories : List<FoodCategory>){
         this.categoryList = categories as ArrayList<FoodCategory>
+        notifyDataSetChanged()
     }
-
-    private val diffCallBack = object : DiffUtil.ItemCallback<FoodCategory>(){
-        override fun areItemsTheSame(oldItem: FoodCategory, newItem: FoodCategory): Boolean {
-            return oldItem.idCategory == newItem.idCategory
-        }
-
-        override fun areContentsTheSame(oldItem: FoodCategory, newItem: FoodCategory): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    val differ = AsyncListDiffer(this, diffCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(CategoryItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false))

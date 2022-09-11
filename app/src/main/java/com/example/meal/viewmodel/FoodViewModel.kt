@@ -22,9 +22,21 @@ class FoodViewModel @Inject constructor(
     private val _categoriesLiveData = MutableLiveData<List<FoodCategory>>()
     val categoriesLiveData : LiveData<List<FoodCategory>> = _categoriesLiveData
 
+    private val _searchLiveData = MutableLiveData<List<Food>>()
+    val searchLiveData : LiveData<List<Food>> = _searchLiveData
+
     init {
         getRandomFood()
         getCategories()
+    }
+
+    fun searchFood(searchFood : String) = viewModelScope.launch {
+        repository.searchFood(searchFood).let { response ->
+            if (response.isSuccessful){
+                val search = response.body()!!.meals
+                _searchLiveData.value = search
+            }
+        }
     }
 
     private fun getCategories() = viewModelScope.launch {

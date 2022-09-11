@@ -14,4 +14,5 @@ class FoodRepository @Inject constructor(
 
     suspend fun getRandomFood() = api.getRandomFood()
     suspend fun getCategories() = api.getCategories()
+    suspend fun searchFood(search : String) = api.searchFood(search)
 }
