@@ -44,6 +44,10 @@ class HomeFragment : Fragment() {
             this.randomFood = food
         }
 
+        binding.imgFav.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
+        }
+
         categoryRvSetup()
         viewModel.categoriesLiveData.observe(viewLifecycleOwner) { categories ->
             categoryHomeAdapter.setCategories(categories)
