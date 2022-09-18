@@ -38,7 +38,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.imgBack.setOnClickListener {
-            findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
+            findNavController().navigateUp()
         }
 
         viewModel.searchFood("a")

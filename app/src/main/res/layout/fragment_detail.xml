@@ -15,7 +15,7 @@
             android:id="@+id/imgFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_favorite_24"
+            android:src="@drawable/favorite_borderless"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="10dp"/>

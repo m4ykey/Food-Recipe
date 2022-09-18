@@ -40,7 +40,6 @@ class FavoriteFragment : Fragment() {
         setupRecyclerView()
         viewModel.getAllFood().observe(viewLifecycleOwner) { favorite ->
             if (favorite.isEmpty()){
-                binding.emptyContainer.root.visibility = View.VISIBLE
                 return@observe
             }
             favAdapter.differ.submitList(favorite)

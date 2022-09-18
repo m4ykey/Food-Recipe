@@ -19,9 +19,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private lateinit var binding : FragmentHomeBinding
-    private val viewModel : FoodViewModel by viewModels()
-    private lateinit var randomFood : Food
+    private lateinit var binding: FragmentHomeBinding
+    private val viewModel: FoodViewModel by viewModels()
+    private lateinit var randomFood: Food
     private lateinit var categoryHomeAdapter: CategoryHomeAdapter
 
     override fun onCreateView(
@@ -50,8 +50,9 @@ class HomeFragment : Fragment() {
 
         categoryRvSetup()
         viewModel.categoriesLiveData.observe(viewLifecycleOwner) { categories ->
-            categoryHomeAdapter.setCategories(categories)
+            categoryHomeAdapter.differ.submitList(categories)
         }
+        onCategoryClick()
 
         binding.etSearch.apply {
             isFocusable = false
@@ -61,10 +62,20 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun onCategoryClick() {
+        categoryHomeAdapter.setOnItemClick {
+            val bundle = Bundle().apply {
+                putParcelable("food", it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_categoryFragment, bundle)
+        }
+    }
+
     private fun categoryRvSetup() {
         categoryHomeAdapter = CategoryHomeAdapter()
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = categoryHomeAdapter
         }
     }

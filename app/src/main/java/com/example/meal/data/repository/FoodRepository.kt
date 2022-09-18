@@ -19,6 +19,7 @@ class FoodRepository @Inject constructor(
     suspend fun getRandomFood() = api.getRandomFood()
     suspend fun getCategories() = api.getCategories()
     suspend fun searchFood(search : String) = api.searchFood(search)
+    suspend fun categoryFoodId(category : String) = api.categoryFoodId(category)
 
     suspend fun deleteFood(food: Food) = dao.deleteFood(food)
     suspend fun upsert(food: Food) = dao.upsert(food)

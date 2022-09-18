@@ -10,11 +10,11 @@ import kotlinx.parcelize.Parcelize
 data class Food(
     @PrimaryKey
     val idMeal : String,
-    val strMeal : String,
-    val strCategory : String,
-    val strArea : String,
-    val strInstructions : String,
-    val strMealThumb : String,
+    val strMeal : String?,
+    val strCategory : String?,
+    val strArea : String?,
+    val strInstructions : String?,
+    val strMealThumb : String?,
 ) : Parcelable
 
 data class FoodList(

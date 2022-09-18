@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.meal.data.model.Food
+import com.example.meal.util.Constants.DATABASE_NUMBER
 
-@Database(entities = [Food::class], version = 1, exportSchema = false)
+@Database(entities = [Food::class], version = DATABASE_NUMBER, exportSchema = false)
 abstract class FoodDatabase : RoomDatabase() {
 
     abstract fun foodDao() : FoodDao

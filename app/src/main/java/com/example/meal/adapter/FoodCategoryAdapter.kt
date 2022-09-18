@@ -6,37 +6,46 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.meal.data.model.Category
 import com.example.meal.data.model.Food
 import com.example.meal.databinding.CategoryItemListBinding
 
-class CategoryHomeAdapter : RecyclerView.Adapter<CategoryHomeAdapter.MyViewHolder>() {
+class FoodCategoryAdapter : RecyclerView.Adapter<FoodCategoryAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val binding : CategoryItemListBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private val diffUtil = object : DiffUtil.ItemCallback<Category>(){
-        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
-            return oldItem.idCategory == newItem.idCategory
+    private val diffUtil = object : DiffUtil.ItemCallback<Food>(){
+        override fun areItemsTheSame(oldItem: Food, newItem: Food): Boolean {
+            return oldItem.idMeal == newItem.idMeal
         }
 
-        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+        override fun areContentsTheSame(oldItem: Food, newItem: Food): Boolean {
             return oldItem == newItem
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(
+            CategoryItemListBinding.inflate(LayoutInflater.from(parent.context),
+            parent, false)
+        )
+    }
+
     val differ = AsyncListDiffer(this, diffUtil)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(CategoryItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    private var onItemClick: ((Food) -> Unit)? = null
+
+    fun setOnItemClick(listener: (Food) -> Unit) {
+        onItemClick = listener
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val category = differ.currentList[position]
+        val foodCategory = differ.currentList[position]
         Glide.with(holder.itemView)
-            .load(category.strCategoryThumb)
-            .fitCenter()
+            .load(foodCategory.strMealThumb)
+            .centerCrop()
             .into(holder.binding.imgCategory)
-        holder.binding.txtCategory.text = category.strCategory
+        holder.binding.txtCategory.text = foodCategory.strMeal
+
         holder.binding.cardview.setOnClickListener {
             onItemClick?.let { it(differ.currentList[position]) }
         }
@@ -44,11 +53,5 @@ class CategoryHomeAdapter : RecyclerView.Adapter<CategoryHomeAdapter.MyViewHolde
 
     override fun getItemCount(): Int {
         return differ.currentList.size
-    }
-
-    private var onItemClick : ((Category) -> Unit)? = null
-
-    fun setOnItemClick(listener: (Category) -> Unit) {
-        onItemClick = listener
     }
 }

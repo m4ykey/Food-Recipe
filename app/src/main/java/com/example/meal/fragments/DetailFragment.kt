@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.meal.R
 import com.example.meal.databinding.FragmentDetailBinding
 import com.example.meal.viewmodel.FoodViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +21,7 @@ class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private val args: DetailFragmentArgs by navArgs()
-    private val viewModel : FoodViewModel by viewModels()
+    private val viewModel: FoodViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +47,6 @@ class DetailFragment : Fragment() {
 
         binding.imgFav.setOnClickListener {
             viewModel.insert(food)
-            Toast.makeText(requireContext(), "${food.strMeal} added to favorite", Toast.LENGTH_SHORT).show()
         }
 
         binding.txtCategory.text = food.strCategory
