@@ -3,7 +3,6 @@ package com.example.meal.api
 import com.example.meal.data.model.CategoryList
 import com.example.meal.data.model.FoodList
 import com.example.meal.util.Constants.CATEGORIES
-import com.example.meal.util.Constants.FILTER
 import com.example.meal.util.Constants.RANDOM
 import com.example.meal.util.Constants.SEARCH
 import retrofit2.Response
@@ -21,10 +20,5 @@ interface FoodApi {
     @GET(SEARCH)
     suspend fun searchFood(
         @Query("s") searchFood : String
-    ) : Response<FoodList>
-
-    @GET(FILTER)
-    suspend fun categoryFoodId(
-        @Query("i") categoryFood : String
     ) : Response<FoodList>
 }

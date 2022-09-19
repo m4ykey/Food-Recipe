@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meal.data.model.Category
-import com.example.meal.data.model.Food
 import com.example.meal.databinding.CategoryItemListBinding
 
 class CategoryHomeAdapter : RecyclerView.Adapter<CategoryHomeAdapter.MyViewHolder>() {
@@ -37,18 +36,9 @@ class CategoryHomeAdapter : RecyclerView.Adapter<CategoryHomeAdapter.MyViewHolde
             .fitCenter()
             .into(holder.binding.imgCategory)
         holder.binding.txtCategory.text = category.strCategory
-        holder.binding.cardview.setOnClickListener {
-            onItemClick?.let { it(differ.currentList[position]) }
-        }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
-    }
-
-    private var onItemClick : ((Category) -> Unit)? = null
-
-    fun setOnItemClick(listener: (Category) -> Unit) {
-        onItemClick = listener
     }
 }

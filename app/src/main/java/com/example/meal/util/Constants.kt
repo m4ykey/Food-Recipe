@@ -6,6 +6,5 @@ object Constants {
     const val RANDOM = "random.php"
     const val CATEGORIES = "categories.php"
     const val SEARCH = "search.php"
-    const val FILTER = "filter.php?"
-    const val DATABASE_NUMBER = 2
+    const val DATABASE_NUMBER = 3
 }

@@ -8,9 +8,7 @@ import com.example.meal.data.model.Category
 import com.example.meal.data.model.Food
 import com.example.meal.data.repository.FoodRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,21 +25,9 @@ class FoodViewModel @Inject constructor(
     private val _searchLiveData = MutableLiveData<List<Food>>()
     val searchLiveData: LiveData<List<Food>> = _searchLiveData
 
-    private val _categoryLiveData = MutableLiveData<List<Food>>()
-    val categoryLiveData: LiveData<List<Food>> = _categoryLiveData
-
     init {
         getRandomFood()
         getCategories()
-    }
-
-    fun categoryFoodId(category: String) = viewModelScope.launch {
-        repository.categoryFoodId(category).let { response ->
-            if (response.isSuccessful) {
-                val categories = response.body()!!.meals
-                _categoryLiveData.value = categories
-            }
-        }
     }
 
     fun insert(food: Food) {

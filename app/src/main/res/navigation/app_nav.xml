@@ -19,9 +19,6 @@
         <action
             android:id="@+id/action_homeFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -51,18 +48,6 @@
         tools:layout="@layout/fragment_favorite" >
         <action
             android:id="@+id/action_favoriteFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/categoryFragment"
-        android:name="com.example.meal.fragments.CategoryFragment"
-        android:label="fragment_category"
-        tools:layout="@layout/fragment_category" >
-        <argument
-            android:name="food"
-            app:argType="com.example.meal.data.model.Food" />
-        <action
-            android:id="@+id/action_categoryFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

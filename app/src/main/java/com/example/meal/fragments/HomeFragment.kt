@@ -52,22 +52,12 @@ class HomeFragment : Fragment() {
         viewModel.categoriesLiveData.observe(viewLifecycleOwner) { categories ->
             categoryHomeAdapter.differ.submitList(categories)
         }
-        onCategoryClick()
 
         binding.etSearch.apply {
             isFocusable = false
             setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
-        }
-    }
-
-    private fun onCategoryClick() {
-        categoryHomeAdapter.setOnItemClick {
-            val bundle = Bundle().apply {
-                putParcelable("food", it)
-            }
-            findNavController().navigate(R.id.action_homeFragment_to_categoryFragment, bundle)
         }
     }
 
